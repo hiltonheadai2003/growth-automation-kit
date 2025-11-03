@@ -117,7 +117,15 @@ const Contact = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    action="https://formsubmit.co/hiltonheadai2003@gmail.com"
+                    method="POST"
+                    className="space-y-6"
+                  >
+                    {/* Optional hidden fields */}
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_next" value="https://hiltonhead-ai.com/thank-you" />
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -126,8 +134,6 @@ const Contact = () => {
                         <Input
                           id="name"
                           name="name"
-                          value={formData.name}
-                          onChange={handleChange}
                           placeholder="John Smith"
                           required
                         />
@@ -139,8 +145,6 @@ const Contact = () => {
                         <Input
                           id="business"
                           name="business"
-                          value={formData.business}
-                          onChange={handleChange}
                           placeholder="Your Business"
                           required
                         />
@@ -156,8 +160,6 @@ const Contact = () => {
                           id="email"
                           name="email"
                           type="email"
-                          value={formData.email}
-                          onChange={handleChange}
                           placeholder="john@business.com"
                           required
                         />
@@ -170,8 +172,6 @@ const Contact = () => {
                           id="phone"
                           name="phone"
                           type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
                           placeholder="(843) 555-0123"
                         />
                       </div>
@@ -184,22 +184,14 @@ const Contact = () => {
                       <Textarea
                         id="message"
                         name="message"
-                        value={formData.message}
-                        onChange={handleChange}
                         placeholder="What challenges are you facing? What would you like to automate?"
                         rows={5}
                       />
                     </div>
 
-                    <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="w-5 h-5" />
-                        </>
-                      )}
+                    <Button type="submit" variant="hero" size="lg" className="w-full">
+                      Send Message
+                      <Send className="w-5 h-5" />
                     </Button>
 
                     <p className="text-sm text-muted-foreground text-center">
@@ -209,6 +201,7 @@ const Contact = () => {
                 </CardContent>
               </Card>
             </div>
+
           </div>
         </div>
       </div>
