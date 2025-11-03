@@ -107,7 +107,7 @@ const Contact = () => {
               </Card>
             </div>
 
-            {/* Contact Form */}
+            {/* Contact Form - test*/}
             <div className="lg:col-span-2">
               <Card className="border-2 border-border shadow-xl">
                 <CardHeader>
