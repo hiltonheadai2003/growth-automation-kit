@@ -32,7 +32,7 @@ const FloatingCTA = () => {
         onClick={scrollToContact}
         variant="hero"
         size="lg"
-        className="shadow-2xl animate-glow-pulse group"
+        className="shadow-2xl animate-glow-pulse group btn-interactive"
       >
         <Calendar className="w-5 h-5" />
         <span className="hidden sm:inline">Book Demo</span>

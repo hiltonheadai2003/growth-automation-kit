@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Bot, Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,10 +23,17 @@ const Navbar = () => {
     }
   };
 
+  const navLinks = [
+    { label: "About", id: "about" },
+    { label: "Services", id: "services" },
+    { label: "How It Works", id: "how-it-works" },
+    { label: "Case Studies", id: "case-studies" },
+  ];
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-background/80 backdrop-blur-xl shadow-lg border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,38 +44,23 @@ const Navbar = () => {
               <Bot className="w-6 h-6 text-primary-foreground" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg text-foreground">Hilton Head AI</span>
-              <span className="text-xs text-muted-foreground hidden sm:block">Smart Automation</span>
+              <span className="font-display font-bold text-lg text-foreground">Hilton Head AI</span>
+              <span className="text-xs text-muted-foreground hidden sm:block font-mono">Smart Automation</span>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => scrollToSection("how-it-works")}
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              How It Works
-            </button>
-            <button
-              onClick={() => scrollToSection("case-studies")}
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              Case Studies
-            </button>
-            <Button onClick={() => scrollToSection("contact")} variant="hero" size="sm">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className="nav-link text-foreground hover:text-primary font-medium pb-1"
+              >
+                {link.label}
+              </button>
+            ))}
+            <Button onClick={() => scrollToSection("contact")} variant="hero" size="sm" className="btn-interactive">
               Book a Demo
             </Button>
           </div>
@@ -75,45 +68,49 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-3 animate-fade-in">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
-              className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => scrollToSection("how-it-works")}
-              className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
-            >
-              How It Works
-            </button>
-            <button
-              onClick={() => scrollToSection("case-studies")}
-              className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
-            >
-              Case Studies
-            </button>
-            <Button onClick={() => scrollToSection("contact")} variant="hero" className="w-full">
-              Book a Demo
-            </Button>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu - Full Screen Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-0 top-20 bg-background/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
+          >
+            {navLinks.map((link, i) => (
+              <motion.button
+                key={link.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: i * 0.1, duration: 0.3 }}
+                onClick={() => scrollToSection(link.id)}
+                className="text-3xl font-display font-bold text-foreground hover:text-primary transition-colors min-h-[44px]"
+              >
+                {link.label}
+              </motion.button>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
+            >
+              <Button onClick={() => scrollToSection("contact")} variant="hero" size="lg" className="btn-interactive">
+                Book a Demo
+              </Button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
