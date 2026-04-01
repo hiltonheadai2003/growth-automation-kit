@@ -1,10 +1,30 @@
 import { Bot, Mail, Phone, MapPin } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
+
+const FooterMarquee = () => {
+  const text = "HILTON HEAD AI • SMART AUTOMATION • ";
+  const doubled = text.repeat(8);
+
+  return (
+    <div className="overflow-hidden py-8 border-b border-border">
+      <div className="animate-marquee flex whitespace-nowrap">
+        <span className="text-6xl sm:text-7xl md:text-8xl font-display font-bold text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--foreground) / 0.08)" }}>
+          {doubled}
+        </span>
+        <span className="text-6xl sm:text-7xl md:text-8xl font-display font-bold text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--foreground) / 0.08)" }}>
+          {doubled}
+        </span>
+      </div>
+    </div>
+  );
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-card border-t border-border">
+      <FooterMarquee />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
@@ -14,8 +34,8 @@ const Footer = () => {
                 <Bot className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-foreground">Hilton Head AI</h3>
-                <p className="text-xs text-muted-foreground">Smart Automation for Local Business Growth</p>
+                <h3 className="font-display font-bold text-lg text-foreground">Hilton Head AI</h3>
+                <p className="text-xs text-muted-foreground font-mono">Smart Automation for Local Business Growth</p>
               </div>
             </div>
             <p className="text-muted-foreground mb-4 max-w-md">
@@ -25,46 +45,29 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <h4 className="font-display font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li>
-                <button
-                  onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Services
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  How It Works
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Case Studies
-                </button>
-              </li>
+              {[
+                { label: "About Us", id: "about" },
+                { label: "Services", id: "services" },
+                { label: "How It Works", id: "how-it-works" },
+                { label: "Case Studies", id: "case-studies" },
+              ].map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" })}
+                    className="text-muted-foreground hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+            <h4 className="font-display font-semibold text-foreground mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4 text-primary" />
@@ -93,14 +96,14 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground text-center sm:text-left">
+            <p className="text-sm text-muted-foreground text-center sm:text-left font-mono">
               © {currentYear} Hilton Head AI. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="#" className="hover:text-primary transition-all duration-300 hover:scale-110 inline-block">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="#" className="hover:text-primary transition-all duration-300 hover:scale-110 inline-block">
                 Terms of Service
               </a>
             </div>

@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -44,74 +45,50 @@ const Contact = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Get <span className="text-primary">Started</span> Today
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ready to automate your business and save time? Book a free demo or send us a message.
-            </p>
+          <div className="text-center mb-16">
+            <ScrollReveal>
+              <h2 className="font-display font-bold text-foreground mb-4">
+                Get <span className="text-primary">Started</span> Today
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.15}>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+                Ready to automate your business and save time? Book a free demo or send us a message.
+              </p>
+            </ScrollReveal>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Info */}
             <div className="space-y-6">
-              <Card className="border-2 hover:border-primary/50 transition-colors">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 glow-primary">
-                      <Mail className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
-                      <a href="mailto:hello@hiltonheadai.com" className="text-muted-foreground hover:text-primary transition-colors">
-                        hello@hiltonheadai.com
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 hover:border-secondary/50 transition-colors">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0 glow-secondary">
-                      <Phone className="w-6 h-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
-                      <a href="tel:+18435551234" className="text-muted-foreground hover:text-secondary transition-colors">
-                        (843) 555-1234
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 hover:border-accent/50 transition-colors">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Visit Us</h3>
-                      <p className="text-muted-foreground">
-                        Hilton Head Island, SC
-                        <br />
-                        Serving the Lowcountry
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              {[
+                { icon: Mail, title: "Email Us", content: <a href="mailto:hello@hiltonheadai.com" className="text-muted-foreground hover:text-primary transition-colors">hello@hiltonheadai.com</a>, color: "primary", glow: "glow-primary" },
+                { icon: Phone, title: "Call Us", content: <a href="tel:+18435551234" className="text-muted-foreground hover:text-secondary transition-colors">(843) 555-1234</a>, color: "secondary", glow: "glow-secondary" },
+                { icon: MapPin, title: "Visit Us", content: <p className="text-muted-foreground">Hilton Head Island, SC<br />Serving the Lowcountry</p>, color: "accent", glow: "" },
+              ].map((item, i) => (
+                <ScrollReveal key={i} delay={0.1 + i * 0.1}>
+                  <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className={`w-12 h-12 rounded-lg bg-${item.color}/10 flex items-center justify-center flex-shrink-0 ${item.glow}`}>
+                          <item.icon className={`w-6 h-6 text-${item.color}`} />
+                        </div>
+                        <div>
+                          <h3 className="font-display font-semibold text-foreground mb-1">{item.title}</h3>
+                          {item.content}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              ))}
             </div>
 
-            {/* Contact Form - test*/}
-            <div className="lg:col-span-2">
+            {/* Contact Form */}
+            <ScrollReveal delay={0.2} className="lg:col-span-2">
               <Card className="border-2 border-border shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Book Your Free Demo</CardTitle>
+                  <CardTitle className="text-2xl font-display">Book Your Free Demo</CardTitle>
                   <CardDescription className="text-base">
                     Fill out the form below and we'll schedule a personalized demo of our automation solutions.
                   </CardDescription>
@@ -122,74 +99,47 @@ const Contact = () => {
                     method="POST"
                     className="space-y-6"
                   >
-                    {/* Optional hidden fields */}
                     <input type="hidden" name="_captcha" value="false" />
                     <input type="hidden" name="_next" value="https://hiltonhead-ai.com/thank-you" />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-foreground">
+                        <label htmlFor="name" className="text-sm font-medium text-foreground font-mono">
                           Full Name *
                         </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          placeholder="John Smith"
-                          required
-                        />
+                        <Input id="name" name="name" placeholder="John Smith" required className="min-h-[44px]" />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="business" className="text-sm font-medium text-foreground">
+                        <label htmlFor="business" className="text-sm font-medium text-foreground font-mono">
                           Business Name *
                         </label>
-                        <Input
-                          id="business"
-                          name="business"
-                          placeholder="Your Business"
-                          required
-                        />
+                        <Input id="business" name="business" placeholder="Your Business" required className="min-h-[44px]" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-foreground">
+                        <label htmlFor="email" className="text-sm font-medium text-foreground font-mono">
                           Email Address *
                         </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="john@business.com"
-                          required
-                        />
+                        <Input id="email" name="email" type="email" placeholder="john@business.com" required className="min-h-[44px]" />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="text-sm font-medium text-foreground">
+                        <label htmlFor="phone" className="text-sm font-medium text-foreground font-mono">
                           Phone Number
                         </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          placeholder="(843) 555-0123"
-                        />
+                        <Input id="phone" name="phone" type="tel" placeholder="(843) 555-0123" className="min-h-[44px]" />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-foreground">
+                      <label htmlFor="message" className="text-sm font-medium text-foreground font-mono">
                         Tell us about your needs
                       </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="What challenges are you facing? What would you like to automate?"
-                        rows={5}
-                      />
+                      <Textarea id="message" name="message" placeholder="What challenges are you facing? What would you like to automate?" rows={5} />
                     </div>
 
-                    <Button type="submit" variant="hero" size="lg" className="w-full">
+                    <Button type="submit" variant="hero" size="lg" className="w-full btn-interactive">
                       Send Message
                       <Send className="w-5 h-5" />
                     </Button>
@@ -200,8 +150,7 @@ const Contact = () => {
                   </form>
                 </CardContent>
               </Card>
-            </div>
-
+            </ScrollReveal>
           </div>
         </div>
       </div>
