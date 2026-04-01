@@ -62,6 +62,13 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <Button onClick={() => scrollToSection("contact")} variant="hero" size="sm" className="btn-interactive">
               Book a Demo
             </Button>
