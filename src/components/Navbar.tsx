@@ -107,11 +107,22 @@ const Navbar = () => {
                 {link.label}
               </motion.button>
             ))}
-            <motion.div
+            <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
+              onClick={toggleTheme}
+              className="text-xl font-display text-foreground hover:text-primary transition-colors min-h-[44px] flex items-center gap-2"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDark ? "Light Mode" : "Dark Mode"}
+            </motion.button>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ delay: (navLinks.length + 1) * 0.1, duration: 0.3 }}
             >
               <Button onClick={() => scrollToSection("contact")} variant="hero" size="lg" className="btn-interactive">
                 Book a Demo
