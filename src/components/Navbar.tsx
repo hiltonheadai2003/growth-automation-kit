@@ -7,6 +7,7 @@ import { useTheme } from "@/hooks/useTheme";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isDark, toggle: toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
