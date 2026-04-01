@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Bot, Menu, X } from "lucide-react";
+import { Bot, Menu, X, Sun, Moon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTheme } from "@/hooks/useTheme";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isDark, toggle: toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +62,13 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <Button onClick={() => scrollToSection("contact")} variant="hero" size="sm" className="btn-interactive">
               Book a Demo
             </Button>
@@ -98,11 +107,22 @@ const Navbar = () => {
                 {link.label}
               </motion.button>
             ))}
-            <motion.div
+            <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
+              onClick={toggleTheme}
+              className="text-xl font-display text-foreground hover:text-primary transition-colors min-h-[44px] flex items-center gap-2"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDark ? "Light Mode" : "Dark Mode"}
+            </motion.button>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ delay: (navLinks.length + 1) * 0.1, duration: 0.3 }}
             >
               <Button onClick={() => scrollToSection("contact")} variant="hero" size="lg" className="btn-interactive">
                 Book a Demo
