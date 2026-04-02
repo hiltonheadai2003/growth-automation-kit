@@ -55,8 +55,8 @@ const CustomCursor = () => {
       <div
         className="rounded-full -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out"
         style={{
-          width: isHovering ? 40 : 8,
-          height: isHovering ? 40 : 8,
+          width: isHovering ? 120 : 24,
+          height: isHovering ? 120 : 24,
           backgroundColor: isHovering ? "transparent" : "hsl(var(--primary))",
           border: isHovering ? "2px solid hsl(var(--primary))" : "none",
           mixBlendMode: isHovering ? "difference" : "normal",
