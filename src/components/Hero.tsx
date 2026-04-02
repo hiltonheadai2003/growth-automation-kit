@@ -45,29 +45,33 @@ const Hero = () => {
 
           {/* Headline - stagger each word */}
           <h1 className="font-display font-bold text-foreground leading-tight">
-            {headlineWords.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                className="inline-block mr-[0.3em] text-5xl"
-              >
-                {word}
-              </motion.span>
-            ))}{" "}
+            <span className="block sm:inline">
+              {headlineWords.map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                  className="inline-block mr-[0.3em] text-4xl sm:text-5xl"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
             <br className="hidden sm:block" />
-            {gradientWords.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
-                className="inline-block mr-[0.3em] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-7xl"
-              >
-                {word}
-              </motion.span>
-            ))}
+            <span className="block sm:inline">
+              {gradientWords.map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
+                  className="block sm:inline-block mr-[0.3em] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-5xl sm:text-7xl"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
           </h1>
 
           {/* Subheadline */}
