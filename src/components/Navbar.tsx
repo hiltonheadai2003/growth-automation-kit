@@ -102,8 +102,19 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden fixed inset-0 top-0 pt-24 bg-background backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
+            className="md:hidden fixed inset-0 bg-background z-[60] flex flex-col items-center justify-center gap-8"
           >
+            {/* Close button inside overlay */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-6 right-4 p-2 text-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Close menu"
+            >
+              <X className="w-7 h-7" />
+            </motion.button>
             {navLinks.map((link, i) => (
               <motion.button
                 key={link.id}
