@@ -221,4 +221,10 @@
   .btn-interactive:active {
     transform: scale(0.98);
   }
-}
+  }
+
+  .mobile-menu-open .floating-cta {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(1rem);
+  }
