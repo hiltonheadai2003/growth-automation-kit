@@ -202,6 +202,18 @@
     animation-play-state: paused;
   }
 
+  /* Marquee: content moves left → right (seamless loop with duplicated track) */
+  @keyframes marquee-ltr {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .animate-marquee-ltr {
+    animation: marquee-ltr 55s linear infinite;
+  }
+  .animate-marquee-ltr:hover {
+    animation-play-state: paused;
+  }
+
   /* Page load fade */
   @keyframes page-fade-in {
     from { opacity: 0; }
@@ -221,10 +233,10 @@
   .btn-interactive:active {
     transform: scale(0.98);
   }
-  }
 
   .mobile-menu-open .floating-cta {
     opacity: 0 !important;
     pointer-events: none !important;
     transform: translateY(1rem);
   }
+}

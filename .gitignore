@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Secrets & local env (never commit real keys — use GitHub → Settings → Secrets for CI)
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
