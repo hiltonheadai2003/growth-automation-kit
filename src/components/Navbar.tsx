@@ -92,7 +92,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden fixed inset-0 top-20 bg-background/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
+            className="md:hidden fixed inset-0 top-0 pt-24 bg-background backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8"
           >
             {navLinks.map((link, i) => (
               <motion.button
