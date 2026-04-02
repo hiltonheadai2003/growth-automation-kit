@@ -63,7 +63,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
-                className="inline-block mr-[0.3em] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
+                className="inline-block mr-[0.3em] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-7xl"
               >
                 {word}
               </motion.span>
