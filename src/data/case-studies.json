@@ -1,8 +1,9 @@
 {
   "cases": [
     {
-      "business": "Coastal Bistro",
-      "type": "Restaurant",
+      "business": "Hilton Head AI",
+      "type": "AI Agency",
+      "image": "public/data/case-studies-images/eisa-gandmasti.png",
       "challenge": "Missing 40+ calls daily during peak hours, losing reservations and customer trust",
       "solution": "AI call automation with reservation booking and waitlist management",
       "quote": "Hilton Head AI transformed how we handle calls. We never miss a reservation now!",

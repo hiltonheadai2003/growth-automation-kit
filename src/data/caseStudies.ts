@@ -19,7 +19,7 @@ import raw from "./case-studies.json";
  *   • Non-empty path → screenshot above metrics. File must live under public/ (e.g. public/photo.jpg → use "/photo.jpg").
  *   • You can write "case-studies/x.png" or "/case-studies/x.png" — a leading slash is added if missing.
  *   • Omit "image" (or "" / whitespace) → results-only column.
- *   Examples: "/placeholder.svg", "case-studies/site.png"
+ *   Examples: "/placeholder.svg", "/data/case-studies-images/your-shot.png"
  *
  * Each result: { "icon": "<slug>", "label": "...", "color": "primary" | "secondary" | "accent" }
  *
