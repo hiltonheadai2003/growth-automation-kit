@@ -101,7 +101,7 @@ const Contact = () => {
                     className="space-y-6"
                   >
                     <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value="https://hiltonhead-ai.com/thank-you" />
+                    <input type="hidden" name="_next" value="https://hiltonhead-ai.com/" />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
