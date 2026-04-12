@@ -93,10 +93,10 @@ const Contact = () => {
                     Fill out the form below and we'll schedule a personalized demo of our automation solutions.
                   </CardDescription>
                 </CardHeader>
-                
+
                 <CardContent>
                   <form
-                    action="https://formsubmit.co/hiltonheadai2003@gmail.com"
+                    action="https://formsubmit.co/5c66a9da03d3ef39783110441728b887"
                     method="POST"
                     className="space-y-6"
                   >
